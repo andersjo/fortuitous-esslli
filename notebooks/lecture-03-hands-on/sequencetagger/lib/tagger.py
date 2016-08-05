@@ -12,9 +12,15 @@ class AbstractTagger(object):
       Main abstract class of a sequence tagger
       implement the build_graph for different architectures
       """
-    def __init__(self):
+    def __init__(self,seed=None):
         self.w2i = {}  # word to index mapping
         self.t2i = {}  # tag to index mapping
+        if seed:
+            self.set_seed(seed)
+
+    def set_seed(self, seed):
+        self.seed = seed
+        np.random.seed(seed)
 
     def build_graph(self):
         raise "Not implemented: need to specify in subclass"
@@ -88,6 +94,7 @@ class SequenceTagger(AbstractTagger):
 
         X = []
         Y = []
+        X_org = [] # keep original words for type-constr.
         num_sentences = 0
         num_tokens = 0
 
@@ -118,6 +125,7 @@ class SequenceTagger(AbstractTagger):
 
             X.append(instance_feats_indices)
             Y.append(instance_tags_indices)
+            X_org.append(words)
 
         if not freeze: # when reading train data
             i2t = {id: tag for tag, id in t2i.items()}
@@ -128,7 +136,7 @@ class SequenceTagger(AbstractTagger):
         if not freeze:
             return X, Y, w2i, t2i  # return token/tag indices
         else:
-            return X, Y
+            return X, Y, X_org
 
     def read_data(self, trainfile, testfile, dev=None, freeze=False):
         """
@@ -138,7 +146,7 @@ class SequenceTagger(AbstractTagger):
         print(trainfile)
         # convert word 2 indices, labels 2 number
         train_X_in, train_Y_in, self.w2i, self.t2i = self.make_data(trainfile)
-        self.test_X_in, self.test_Y_in = self.make_data(testfile, w2i=self.w2i, t2i=self.t2i, freeze=True) #keep textX for later
+        self.test_X_in, self.test_Y_in, self.test_X_org = self.make_data(testfile, w2i=self.w2i, t2i=self.t2i, freeze=True) #keep textX for later
         self.max_sentence_len = max([len(s) for s in train_X_in] + [len(s) for s in self.test_X_in])
         print("max_sentence_len:", self.max_sentence_len, file=sys.stderr)
 
@@ -154,7 +162,7 @@ class SequenceTagger(AbstractTagger):
         self.train_Y = np.array([list(np_utils.to_categorical(seq, nb_classes)) for seq in train_Y_padded])
         self.test_Y = np.array([list(np_utils.to_categorical(seq, nb_classes)) for seq in test_Y_padded])
         if dev:
-            dev_X_in, dev_Y_in = self.make_data(dev, w2i=self.w2i, t2i=self.t2i, freeze=True)
+            dev_X_in, dev_Y_in, dev_X_org = self.make_data(dev, w2i=self.w2i, t2i=self.t2i, freeze=True)
             self.dev_X = pad_sentences(dev_X_in, self.max_sentence_len, self.w2i["<pad>"])
             dev_Y_padded = pad_sentences(dev_Y_in, self.max_sentence_len, 0)
             self.dev_Y = [list(np_utils.to_categorical(seq, nb_classes)) for seq in dev_Y_padded]
