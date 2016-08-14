@@ -1,11 +1,42 @@
 % Fortuitous data
 % ESSLLI 2016, Day 1
 % Željko Agić, Anders Johannsen, Barbara Plank 
-# The course
+
+# Getting to know each other
+
+##  Željko Agić (read as: Zhelyko Aggich ☺)
+
+![](https://raw.githubusercontent.com/zeljkoagic/zeljkoagic.github.io/master/pictures/pic3.jpg){width=40% }
+
+http://zeljkoagic.github.io/ 
+
+&#64;zeljkoagic
+
+## Anders Johannsen
+
+![](http://www.johannsen.com/img/straw_hat.jpg){width=40%}
+
+http://www.johannsen.com/ 
+
+&#64;andersjo
+
+## Barbara Plank
+
+![](http://www.let.rug.nl/~bplank/img/barbara_malta.jpg){width=40%}
+
+http://www.let.rug.nl/~bplank
+
+&#64;barbara_plank
 
 <style type="text/css">
 p { text-align: left; }
 </style>
+
+## Who are you?
+
+** link **
+
+# The course
 
 # Motivation
 
