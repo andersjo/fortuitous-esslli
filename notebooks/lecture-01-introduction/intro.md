@@ -44,17 +44,33 @@ Data is weird. Researchers make invalid assumptions. Results become inflated.
 It used to be the case that language data = articles published in the Wall Street Journal around 1986.
 </div>
 
+## What if language technology could start over?
 
-## General statement of the problem
+- English newswire has advanced our field, but also introduced impercetible biases
+- Why is newswire more **canonical** than other text types?
+- If NLP could start over, what would be our canon?
 
-
-![Data mismatch (train/application time)](pics/train-test.png){ width=90% }
 
 <div class="notes">
-Data mismatch. Train to application time mismatch. 
+- Notion of canonical data.
+- UD/Wall street bias. 
+- Languages. 
+
+How would we avoid making the same mistakes again? Wikipedia is biased, social media commentary is biased. 
 </div>
 
+
+## What’s in a **domain**?
+
+POS tagging accuracies versus OOV rate/POS bigram KL divergence
+
+![](pics/oov-acc.png){ width=49% }\ ![](pics/kl-acc.png){ width=49% }
+
+
+
 ## Data mismatch - dichotomy:
+
+![Train/application time](pics/xdom.png){ width=100% }
 
 - Train <> Test
 - Source <> Target
@@ -78,19 +94,6 @@ Is there such a variety space? What would the factors be?
 . . .
 
 ![Possible dimensions for the variety space](pics/variety.png){ width=70%, style="border: none"}
-
-## What if language technology could start over?
-
-
-- Notion of canonical data.
-- UD/Wall street bias. 
-- Languages. 
-
-**INSERT PICTURE OF DATASET PERFORMANCE WRT OOV/KL**
-![Tagging accuracy versus OOV rate](pics/oov-acc.png){ width=50% }
-![POS KL divergence](pics/kl-acc.png){ width=50% }
-
-How would we avoid making the same mistakes again? Wikipedia is biased, social media commentary is biased. 
 
 ## General statement of the problem
 
