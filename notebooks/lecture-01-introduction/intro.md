@@ -1,7 +1,6 @@
 % Fortuitous data
-% Day 1
-% ESSLLI 2016
-
+% ESSLLI 2016, Day 1
+% Željko Agić, Anders Johannsen, Barbara Plank 
 # The course
 
 <style type="text/css">
@@ -25,6 +24,8 @@ It used to be the case that language data = articles published in the Wall Stree
 - Languages. 
 
 **INSERT PICTURE OF DATASET PERFORMANCE WRT OOV/KL**
+![Tagging accuracy versus OOV rate](pics/oov-acc.png){ width=50% }
+![POS KL divergence](pics/kl-acc.png){ width=50% }
 
 How would we avoid making the same mistakes again? Wikipedia is biased, social media commentary is biased. 
 
@@ -36,37 +37,35 @@ Data mismatch. Train to application time mismatch.
 
 Where do our data come from. BP envisions a variety space:
 
-$$\mathcal{D} \tilde P(X, Y|V)$$
+$$\mathcal{D} \sim P(X, Y|V)$$
 
 Is there such a variety space? What would the factors be?
 
 . . .
 
-Picture of dimensions. 
-
+![Possible dimensions for the variety space](pics/variety.png){ width=50%, style="border: none"}
 
 ## Silly problem with simple solution?
 
 ### Annotate more?
 
-Could we simply make sure that we annotate the right data? And more data. (Eisenstein paper, 2014)
+Could we simply make sure that we annotate the right data? And more data. [@eisenstein:2013:bad]
 
-<aside class="note">
+<div class="notes">
 Unsustainable, for many reasons. 
 
 (We cannot annotate *enough* data for every single task that we wish to solve). 
-</aside>
+</div>
 
 
 ### Map to canonical form?
 
-Example: spelling normalisation.
+Example: spelling normalisation. [e.g. @han:baldwin:2013]
 
-<aside class="note">
+<div class="notes">
 A more powerful version of this is *invariant representations*. 
-</aside>
+</div>
 
-(Tim Baldwin paper)
 
 ### Domain adaptation
 
@@ -114,5 +113,6 @@ The shape of things to come.
 # Learning inside and outside the shire
 # 
 
+# References
 
 
