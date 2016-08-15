@@ -22,7 +22,9 @@ http://www.johannsen.com/
 
 ## Barbara Plank
 
-![](http://www.let.rug.nl/~bplank/img/barbara_malta.jpg){width=40%}
+![](http://www.let.rug.nl/~bplank/barbara.png){width=40%}
+
+University of Groningen
 
 http://www.let.rug.nl/~bplank
 
@@ -245,6 +247,10 @@ and can be used (relatively) easily (**readiness**)
 . . .
 
 - **Side product of behavior** (e.g., cognitive processing data), availability: +, readiness: -
+
+## Fortuitous approaches
+
+Combine fortuitous **data** with proper **models** to enable adaptive language technology.
 
 # Overview of the course
 
