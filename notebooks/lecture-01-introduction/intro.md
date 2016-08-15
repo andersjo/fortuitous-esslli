@@ -155,7 +155,7 @@ Is there such a variety space? What would the factors be?
 
 ![The variety space](pics/variety.png){ width=70%, style="border: none"}
 
-## General statement of the problem
+# General statement of the problem
 
 Whatever we consider **canonical**, the challenge remains: processing non-canonical data is hard. 
 
@@ -163,12 +163,20 @@ What are possible solutions?
 
 ## Silly problem with simple solution?
 
-### Proposal 1: Annotate more?
+## Approach 1: Annotate more?
 
-Could we simply make sure that we annotate the right data? And more data. [@eisenstein:2013:bad]
+. . .
+
+- Take cross-product between *domain* and *language* - huge space! 
+- our ways of communication change, so does our data; social media is a moving target [@eisenstein:2013:bad]
+
+
+![**Training data sparsity**](pics/domains-lang.png){ width=70% }
 
 <div class="notes">
 Unsustainable, for many reasons. 
+
+Could we simply make sure that we annotate the right data? And more data. 
 
 (We cannot annotate *enough* data for every single task that we wish to solve). 
 - take language and domain; cross-product; huge space
@@ -177,32 +185,65 @@ Unsustainable, for many reasons.
 </div>
 
 
-### Map to canonical form?
+## Approach 2: Map to canonical form?
 
-Example: spelling normalisation. [e.g. @han:baldwin:2013]
+
+- Example: spelling normalisation [e.g. @han:baldwin:2013] ``u must be talkin bout the paper''
+- However, what **norm**?
 
 <div class="notes">
 A more powerful version of this is *invariant representations*. 
 </div>
 
-
-### Domain adaptation
+## Approach 3: Domain adaptation
 
 Example: Importance weighting. 
 
-Not final answer. Often, in reality, we don't know the target domain. And we don't like the term "domain". 
+![](pics/iw2.png){ width=49% }
 
+. . .
+
+![](pics/iw1.png){ width=49% }
+
+. . .
+
+- Not final answer. 
+- Many approaches [@daume:2007; @weiss2016survey] based on unrealistic assumptions
+- Often, in reality, we don't know the target domain. 
+
+<div class="notes">
 (Hal Daume, 2007 - or Weiss paper on transfer learning).
+</div>
 
-## Fortuitous data (this course)
+# Fortuitous data (this course)
 
+## What means fortuitous?
 ![Fortuitous](pics/fortuitous-def.png){ width=100% }
 
-Annotate more: reuse data that was not explicitly annotated. 
+## Fortuitous data 
 
-Learn invariant representations of data.
+To address the three prior approaches:
 
-Learn invariant representations of data.
+- Annotate more: reuse **data that was not explicitly annotated**. 
+
+- With sufficient data learn **invariant representations**.
+
+- **Gather data of new varieties quickly**, or use additional signal to build more robust models.
+
+## Typology of fortuitous data
+
+Data that is out there, waits to be harvested (**availability**)
+and can be used (relatively) easily (**readiness**)
+
+- **Side product of user-generated content** (e.g., hyperlinks, HTML markup, large unlabeled data pools), availability: +, readiness: + 
+
+. . .
+
+- **Side product of annotation** (e.g., annotator disagreement), availability: -, readiness: +
+
+. . .
+
+- **Side product of behavior** (e.g., cognitive processing data), availability: +, readiness: -
 
 # Overview of the course
 
