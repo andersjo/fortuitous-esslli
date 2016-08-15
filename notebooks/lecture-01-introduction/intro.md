@@ -240,15 +240,15 @@ and can be used (relatively) easily (**readiness**)
 ## Typology of fortuitous data
 
 
-- **Side product of user-generated content** (e.g., hyperlinks, HTML markup, large unlabeled data pools), availability: +, readiness: + 
+- **Side benefit of user-generated content** (e.g., hyperlinks, HTML markup, large unlabeled data pools), availability: +, readiness: + 
 
 . . .
 
-- **Side product of annotation** (e.g., annotator disagreement), availability: -, readiness: +
+- **Side benefit of annotation** (e.g., annotator disagreement), availability: -, readiness: +
 
 . . .
 
-- **Side product of behavior** (e.g., cognitive processing data), availability: +, readiness: -
+- **Side benefit of behavior** (e.g., cognitive processing data), availability: +, readiness: -
 
 ## Fortuitous approaches
 
