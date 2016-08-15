@@ -221,7 +221,7 @@ Example: Importance weighting.
 
 # Fortuitous data (this course)
 
-## What means fortuitous?
+## Define fortuitous!
 ![Fortuitous](pics/fortuitous-def.png){ width=100% }
 
 ## Fortuitous data 
