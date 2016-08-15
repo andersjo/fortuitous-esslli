@@ -65,6 +65,9 @@ p { text-align: left; }
  
 ![](pics/xdom.png){ width=100% }
 
+<div class="notes">
+give intuition, later more
+</div>
 
 ## Labeled data is **scarce**
 
@@ -130,9 +133,11 @@ Really a dichotomy?
 
 ## What’s in a **domain**?
 
-POS tagging accuracies versus OOV rate/POS bigram KL divergence
+![POS tagging accuracies versus OOV rate](pics/oov-acc.png){ width=80% }
 
-![](pics/oov-acc.png){ width=49% }\ ![](pics/kl-acc.png){ width=49% }
+----
+
+![POS tagging accuracies versus POS bigram KL divergence](pics/kl-acc.png){ width=80% }
 
 
 ## The variety space
