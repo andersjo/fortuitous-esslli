@@ -150,7 +150,7 @@ Is there such a variety space? What would the factors be?
 
 ## The variety space - illustration
 
-- unknown high- dimensional space
+- unknown high-dimensional space
 - A domain (variety) forms a region in this network, with some members more prototypical than others (prototype theory, Wittgenstein, **graded** notion of category)
 
 ![The variety space](pics/variety.png){ width=70%, style="border: none"}
@@ -208,7 +208,7 @@ Example: Importance weighting.
 . . .
 
 - Not final answer. 
-- Many approaches [@daume:2007; @weiss2016survey] based on unrealistic assumptions
+- Many approaches [@daume:2007; @weiss2016survey], but unrealistic assumptions
 - Often, in reality, we don't know the target domain. 
 
 <div class="notes">
@@ -222,18 +222,19 @@ Example: Importance weighting.
 
 ## Fortuitous data 
 
-To address the three prior approaches:
+Data that is out there, waits to be harvested (**availability**),
+and can be used (relatively) easily (**readiness**)
+
+## Fortuitous data to the rescue
 
 - Annotate more: reuse **data that was not explicitly annotated**. 
 
-- With sufficient data learn **invariant representations**.
+- Normalization: With sufficient data learn **invariant representations**.
 
-- **Gather data of new varieties quickly**, or use additional signal to build more robust models.
+- Domain adaptation: **Gather data of new varieties quickly**, or use additional signal to build more robust models.
 
 ## Typology of fortuitous data
 
-Data that is out there, waits to be harvested (**availability**)
-and can be used (relatively) easily (**readiness**)
 
 - **Side product of user-generated content** (e.g., hyperlinks, HTML markup, large unlabeled data pools), availability: +, readiness: + 
 
@@ -252,7 +253,7 @@ The shape of things to come.
 ## Monday
 
 ### A typology of data mismatch
-### Overview of semi-supervised learning
+### Learning in the shire
 
 ## Tuesday
 
