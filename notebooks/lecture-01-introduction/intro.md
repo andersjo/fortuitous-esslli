@@ -153,11 +153,13 @@ Is there such a variety space? What would the factors be?
 ## The variety space - illustration
 
 - unknown high-dimensional space
-- A domain (variety) forms a region in this network, with some members more prototypical than others (prototype theory, Wittgenstein, **graded** notion of category)
+- A domain (variety) forms a region in this space, with some members more prototypical than others (prototype theory, Wittgenstein, **graded** notion of category)
 
 ![The variety space](pics/variety.png){ width=70%, style="border: none"}
 
 # General statement of the problem
+
+----
 
 Whatever we consider **canonical**, the challenge remains: processing non-canonical data is hard. 
 
@@ -170,7 +172,7 @@ What are possible solutions?
 . . .
 
 - Take cross-product between *domain* and *language* - huge space! 
-- our ways of communication change, so does our data; social media is a moving target [@eisenstein:2013:bad]
+- Our ways of communication change, so does our data; social media is a moving target [@eisenstein:2013:bad]
 
 
 ![**Training data sparsity**](pics/domains-lang.png){ width=70% }
