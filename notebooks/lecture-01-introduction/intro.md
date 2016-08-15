@@ -34,7 +34,13 @@ p { text-align: left; }
 
 ## Who are you?
 
-** link **
+. . .
+
+<larger>
+<center>
+[http://bit.ly/2aVJVbs](http://bit.ly/2aVJVbs)
+</center>
+</larger>
 
 # The course
 
@@ -44,23 +50,37 @@ p { text-align: left; }
 
 ![Languages used on the Internet](https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/WebsiteContentLanguages.svg/447px-WebsiteContentLanguages.svg.png){ width=90% }
 
-## Example
+## The problem
 
 ![Tagging Twitter #hard](pics/twitter.png){ width=90% }
 
+## The reason
+
+- NLP models are trained on samples from a **limited set of canonical data** 
+- Mainly: English newswire
+ 
+![](pics/xdom.png){ width=100% }
+
+
 ## Labeled data is **scarce**
+
+. . .
 
 ![Training data sparsity](pics/datapool.png){ width=90% }
 
 ## Labeled data is **biased**
 
+. . . 
+
 For a long while main resource: Wall Street Journal (WSJ), texts from late 80s.
+
+![Newswire bias](pics/wsj.png){ width=60% }
 
 <larger>
 ``*it is an uncomfortable fact that the text in **many of our most frequently-used corpora** was written and edited predominantly **by working-age white men***’’ [@eisenstein:2013:bad]
 </larger>
 
-![Training data sparsity](pics/wsj.png){ width=60% }
+
 
 
 ## Still newswire?
@@ -86,16 +106,11 @@ It used to be the case that language data = articles published in the Wall Stree
 - Notion of canonical data.
 - UD/Wall street bias. 
 - Languages. 
+- what is considered canoncial hitherto is mostly a historical coincidence and motivated by the availablilty of resources. 
 
 How would we avoid making the same mistakes again? Wikipedia is biased, social media commentary is biased. 
 </div>
 
-
-## What’s in a **domain**?
-
-POS tagging accuracies versus OOV rate/POS bigram KL divergence
-
-![](pics/oov-acc.png){ width=49% }\ ![](pics/kl-acc.png){ width=49% }
 
 
 
@@ -108,11 +123,22 @@ POS tagging accuracies versus OOV rate/POS bigram KL divergence
 
 Really a dichotomy?
 
+
+## What’s in a **domain**?
+
+POS tagging accuracies versus OOV rate/POS bigram KL divergence
+
+![](pics/oov-acc.png){ width=49% }\ ![](pics/kl-acc.png){ width=49% }
+
+
 ## The variety space
 
-Where do our data come from?
+- Where does our data come from?
+- *Domain* is an overloaded term. 
+  - In NLP typically used to refer to some coherent set of data from some topic or genre. 
+- There are many other possible factors out there.
 
-…
+. . . 
 
 Our datasets $\mathcal{D}$ are sampled from a **variety space**
 
@@ -122,13 +148,18 @@ $$\mathcal{D} \sim P(X, Y|V)$$
 
 Is there such a variety space? What would the factors be?
 
-. . .
+## The variety space - illustration
 
-![Possible dimensions for the variety space](pics/variety.png){ width=70%, style="border: none"}
+- unknown high- dimensional space
+- A domain (variety) forms a region in this network, with some members more prototypical than others (prototype theory, Wittgenstein, **graded** notion of category)
+
+![The variety space](pics/variety.png){ width=70%, style="border: none"}
 
 ## General statement of the problem
 
-Whatever we consider **canonical**, the challenge remains: processing non-canonical data is hard.
+Whatever we consider **canonical**, the challenge remains: processing non-canonical data is hard. 
+
+What are possible solutions?
 
 ## Silly problem with simple solution?
 
