@@ -239,9 +239,11 @@ How can we hope to use **data from other tasks** where potentially **both the in
 
 - you are in beautiful Italy and want to get acquainted with local card games. You hear about 'scala 40', and are eager to learn it
 
-The input space are cards, and the output space are configuations (hands) of your cards. You seem acquainted with the type of input space, but the rules have changed. Luckily you know already how to play poker. Rather than starting from scratch (tabula rasa), you use your internal knowledge of poker (or generally how to play a card game) to learn how to play 'scala 40', you can quicker get what are valiable configurations (possible outputs) for the new game.
+- The input space are cards, and the output space are configuations (hands) of your cards. 
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Royal_straight_flush.jpg/1920px-Royal_straight_flush.jpg){width=40%}
+- You know already how to play poker. Rather than starting from scratch (**tabula rasa**), you use your internal knowledge of poker (or generally how to play a card game) to learn how to play 'scala 40'.
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Royal_straight_flush.jpg/1920px-Royal_straight_flush.jpg){width=30%}
 
 ----
 
@@ -325,10 +327,10 @@ Noise in extra outputs might be less harmful than in extra input [@caruana1998mu
 
 ## Using the future to predict the present
 
-![[@caruana1998multitask] Using future lab results as extra outputs](pics/caruana-future.png)
+![[@caruana1998multitask] Using future lab results as extra outputs](pics/caruana-future.png){width=70%}
 
 
-## NLP first example
+## First approaches in NLP
 
 ![@collobert:weston:2008](pics/collobert-weston-2008.png)
 
@@ -338,7 +340,7 @@ Noise in extra outputs might be less harmful than in extra input [@caruana1998mu
 
 ## Open domain name error detection
 
-![@cheng2015open](pics/ostendorf.png){width=80%}
+![@cheng2015open](pics/ostendorf.png){width=50%}
 
 ----
 
@@ -417,6 +419,68 @@ How affected are neural network-based taggers by...?
 - Alternative view of data (fortuitous data!) via multi-task learning helpful!
 
 ## Example 2: Are keystroke logs informative for NLP?
+
+. . . 
+
+![](pics/keystrokes1.png)
+
+## Typology of fortuitous data
+
+![](pics/typology.png)
+
+
+----
+
+## Motivation
+![](pics/keystrokes2.png)
+
+
+----
+
+![](pics/keystrokes3.png)
+
+----
+
+![](pics/keystrokes4.png)
+
+----
+
+![](pics/keystrokes5.png)
+
+----
+
+![](pics/keystrokes6.png)
+
+## From keystrokes to labels
+
+![](pics/keystrokes7.png)
+
+
+## Word pauses and POS
+
+![](pics/keystrokes8.png)
+
+## Multi-task learning
+
+![](pics/keystrokes9.png)
+
+
+## Model
+
+![](pics/keystrokes10.png)
+
+----
+
+## Results
+
+![](pics/keystrokes11.png)
+
+----
+![](pics/keystrokes12.png)
+
+(also promising results for CCG tagging)
+
+
 
 # References
 
