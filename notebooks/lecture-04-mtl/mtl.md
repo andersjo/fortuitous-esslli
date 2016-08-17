@@ -1,14 +1,15 @@
 % Fortuitous data
 % ESSLLI 2016, Day 3
+% https://fortuitousdata.github.io/
 
 # Representations and learning from related tasks
 
 ## Today
 
-1. Quick intro to neural Networks: Learning and Computational graph
-2. Representations and first fortuitous tricks
+1. Neural Networks: Graph view
+2. Representations 
 4. Multi-task learning
-5. More fortuitous data 
+5. Fortuitous NLP
     * Part-of-speech tagging with bi-LSTMs and auxiliary loss
     * Keystroke dynamics as source for syntactic chunking
 
@@ -92,7 +93,7 @@ $$NN_{MLP1}(\mathbf{x})=g(\mathbf{xW^1+b^1})\mathbf{W^2}+\mathbf{b^2}$$
 
 ## Equivalent formulizations 
 
-![Complete Neural Network](pics/compgraphcomplete.png){ width=80%}
+![Complete Neural Network](pics/compgraphcomplete.png){ width=70%}
 
 
 ----
@@ -102,7 +103,9 @@ $$NN_{MLP1}(\mathbf{x})=g(\mathbf{xW^1+b^1})\mathbf{W^2}+\mathbf{b^2}$$
 
 However, what is the input **$x$**?
 
-## Feature representation
+# Representations
+
+## Feature representations
 
 Probably the biggest jump when moving from traditional linear models with sparse inputs to deep neural networks is to stop representing each feature as a unique dimension, but instead represent them as **dense vectors** [@goldberg-primer].
 
@@ -129,14 +132,15 @@ $$\mathbf{x}_{cat} \wedge \mathbf{x}_{dog} = 0$$
 
 ----
 
-1. Traditional approach: LSA (SVD) on word-coocurrence matrix
-2. word2vec
+> 1. Traditional approach: LSA (SVD) on word-coocurrence matrix
+> 
+> 2. word2vec
 
 ----
 
-## LSA - Latent Semantic Analysis (Singular Value Decomposition - SVD)
+## LSA - Latent Semantic Analysis 
 
-Approximate a matrix $\mathbf{C}$ through a decomposition into three submatrices (**of smaller dimensionality**):
+Approximate a matrix $\mathbf{C}$ through a decomposition into three submatrices (**of smaller dimensionality**) - Singular Value Decomposition (SVD):
 
 $$\mathbf{C} \approx \mathbf{U \sum V^T}$$
 
@@ -148,7 +152,82 @@ NB. $=$ should be $\approx$
 
 ![](pics/space.png)
 
-## 
+## word2vec
+
+Main idea:
+
+* instead of capturing co-occurence statistics of words
+* **predict context** (surrounding words of every word); in particular, predict words in a window of length $m$ around current word 
+
+since SVD computation cost scales quadratically with size of co-occurence matrix
+
+----
+
+$o$ is the outside word (context), $c$ is the current center word; 
+
+Maximize the probability of a word in the context ($o$) given the current word $c$:
+
+$$p(o|c) = \frac{exp(u_o^T v_c)}{\sum_{w=1}^W exp(u_w^T v_c)}$$
+
+----
+
+![@mikolov2013](pics/skipgram.png){width=50%}
+
+. . . 
+
+NB. denominator $\sum$ over all words! $\rightarrow$ *negative sampling* or *hierarchical softmax*
+
+----
+
+So, what is the input **$x$**?
+
+## Sparse vs dense 
+
+![@goldberg-primer](pics/sparse-vs-dense.png){width=79%}
+
+## Dense feature spaces
+
+A common choice for $c$ is **concatenation**:
+
+$$\mathbf{x} = c(f_1, f_2, f_3) = [v(f_1); v(f_2); v(f_3)] $$
+
+----
+
+Other representations:
+
+. . . 
+
+**sum **:
+
+$$\mathbf{x} = c(f_1, f_2, f3) = [v(f_1)+v(f_2)+v(f_3)] $$
+
+**mean**:
+
+$$\mathbf{x} = c(f_1, f_2, f3) = [mean(v(f_1),v(f_2),v(f_3))] $$
+
+----
+
+![$$x$$ sparse, dense or both](pics/compgraphcomplete.png){ width=70%}
+
+## Embeddings as fortuitous data in Transfer learning 
+
+
+- want: model that works better on other variety of data
+- pool of unlabeled data, estimate embeddings (word2vec)
+
+. . . 
+
+Why would using embeddings work?
+
+----
+
+- embeddings provide latent space $\mathcal{Z}$, **side benefit** of optimising another objective (language model)
+- add to feature space $\phi(x)$, latent space $\mathcal{Z}$ 
+    * add to one-hot vector
+    * initialize embeddings in dense 
+
+
+# Multi-task learning
 
 ## Challenge
 
@@ -172,23 +251,172 @@ Here input and output space are different.
 
 Some skills are unique to driving a motorcycle (need for hand for the clutch, to worry not to tip over when stopping, etc). However, you can use your internal knowledge of how to drive a car in order to learn how to drive a motorcycle. 
 
-# Multi-task learning
 
 ## Key idea
 
-The idea of **multi-task learning** (Caruana, 1997; Collobert et al., 2011) to exploit the training signal of **other tasks**. 
+The idea of **multi-task learning** [@caruana1998multitask, @Collobert:ea:2011] to exploit the training signal of **other tasks**. 
 
-But before we go into MTL, lets recap learning for a single task.
 
-## Single task neural networks
+## Multi-task learning
 
-The figure shows three **separate** feedforward neural networks for three different tasks.
+![](pics/mtl.png)
 
-![](pics/stl.png)
+----
 
-# Recap: Learning 
+![](pics/mtl-loss.png)
 
-todo
+. . . 
+
+**Joint training with:**
+ 
+1. jointly labeled data, but also
+2. distinct sources (!) [for NLP first noted in @collobert:weston:2008]
+
+----
+
+## Deep Joint Training 
+
+[@collobert:weston:2008]
+
+1. Select the next task.
+2. Select a random training example for this task. 
+3. Update the NN for this task by taking a gradient step with respect to this example.
+4. Go to 1.
+
+
+## Why does MTL work? 
+
+
+![Reduced capacity](pics/Edible_fungi_in_basket_2012_G1.jpg){width=80%}
+
+See more in [@caruana1998multitask]
+
+----
+
+![Eavesdropping](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Henri_Adolphe_Laissement_Kardin%C3%A4le_im_Vorzimmer_1895.jpg/1920px-Henri_Adolphe_Laissement_Kardin%C3%A4le_im_Vorzimmer_1895.jpg){width=70%}
+
+----
+
+
+![scikit - denoising filters](http://www.scipy-lectures.org/_images/plot_filter_coins_1.png)
+
+Noise in extra outputs might be less harmful than in extra input [@caruana1998multitask] (also: **weighting** of loss)
+
+----
+
+# Successful MTL
+
+## The first self-driving car
+
+![CMU Alvinn MTL [@caruana1998multitask]](pics/alvinn.png)
+
+
+----
+
+![CMU Alvinn MTL [@caruana1998multitask]](pics/alvinn-mtl.png)
+
+**Note**: here all task labels computable from data
+
+
+----
+
+![CMU Alvinn MTL [@caruana1998multitask]](pics/alvinn-mtl-result.png)
+
+
+## Using the future to predict the present
+
+![[@caruana1998multitask] Using future lab results as extra outputs](pics/caruana-future.png)
+
+
+## NLP first example
+
+![@collobert:weston:2008](pics/collobert-weston-2008.png)
+
+----
+
+![@collobert:weston:2008](pics/collobert-weston-2008-plot.png)
+
+## Open domain name error detection
+
+![@cheng2015open](pics/ostendorf.png){width=80%}
+
+----
+
+## Encoder Decoder models / Sequence to Sequence
+
+
+![@luong2016multi](pics/encdec.png)
+
+----
+
+##  Sequence to Sequence multi-task learning model
+
+![@luong2016multi](pics/encdecmtl.png)
+
+
+## All that glitters is not ...
+
+
+- more computation
+
+- difficulty of defining task relatedness, really knowing when it works
+
+- does not always work 
+
+
+
+# Fortuitous NLP 
+
+
+## Multilingual POS tagging with auxiliary loss 
+
+
+How affected are neural network-based taggers by...?
+
+> - representation
+>
+> - language
+>
+> - data set size
+
+[@plank:ea:2016]
+
+## RNN-based tagger
+
+![@goldberg-primer](pics/rnn-unrolled.png)
+
+----
+
+![Karpathy](pics/rnn-overview.png)
+
+
+## Model
+
+![@plank:ea:2016](pics/plank-model1.png)
+
+## Auxiliary loss
+
+![@plank:ea:2016](pics/plank-model2.png)
+
+## Results 
+
+![](pics/plank-res1.png)
+
+(more results in paper)
+
+----
+
+![](pics/plank-res2.png)
+
+## Take-home message
+
+- LSTM-based tagger less suspectible to large data requirement than assumed
+
+- Char embeddings especially helpful for Slavic and non-IE languages
+
+- Alternative view of data (fortuitous data!) via multi-task learning helpful!
+
+## Example 2: Are keystroke logs informative for NLP?
 
 # References
 
