@@ -87,7 +87,7 @@ In a computational graph:
 
 $$NN_{MLP1}(\mathbf{x})=g(\mathbf{xW^1+b^1})\mathbf{W^2}+\mathbf{b^2}$$
 
-![Inspired by @goldberg-primer](pics/compgraph1.png){ width=20%}
+![Inspired by @goldberg-primer](pics/compgraph1.png){ width=15%}
 
 -----
 
@@ -128,9 +128,9 @@ $$\mathbf{x}_{cat} \wedge \mathbf{x}_{dog} = 0$$
 
 ----
 
-![](pics/flødebolle.png)
+![](pics/flødebolle.png){width=100%}
 
-----
+## Word embeddings
 
 > 1. Traditional approach: LSA (SVD) on word-coocurrence matrix
 > 
@@ -268,9 +268,8 @@ The idea of **multi-task learning** [@caruana1998multitask, @Collobert:ea:2011] 
 ## Why does MTL work? 
 
 
-![Reduced capacity](pics/Edible_fungi_in_basket_2012_G1.jpg){width=80%}
+![Reduced capacity [@caruana1998multitask]](pics/Edible_fungi_in_basket_2012_G1.jpg){width=80%}
 
-See more in [@caruana1998multitask]
 
 ----
 
