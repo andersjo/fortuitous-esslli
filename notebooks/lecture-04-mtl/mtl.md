@@ -263,6 +263,27 @@ The idea of **multi-task learning** [@caruana1998multitask, @Collobert:ea:2011] 
 
 ![](pics/mtl.png)
 
+
+
+## Why does MTL work? 
+
+
+![Reduced capacity](pics/Edible_fungi_in_basket_2012_G1.jpg){width=80%}
+
+See more in [@caruana1998multitask]
+
+----
+
+![Eavesdropping](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Henri_Adolphe_Laissement_Kardin%C3%A4le_im_Vorzimmer_1895.jpg/1920px-Henri_Adolphe_Laissement_Kardin%C3%A4le_im_Vorzimmer_1895.jpg){width=70%}
+
+----
+
+
+![scikit - denoising filters](http://www.scipy-lectures.org/_images/plot_filter_coins_1.png)
+
+Noise in extra outputs might be less harmful than in extra input [@caruana1998multitask] (also: **weighting** of loss)
+
+
 ----
 
 ![](pics/mtl-loss.png)
@@ -285,26 +306,6 @@ The idea of **multi-task learning** [@caruana1998multitask, @Collobert:ea:2011] 
 3. Update the NN for this task by taking a gradient step with respect to this example.
 4. Go to 1.
 
-
-## Why does MTL work? 
-
-
-![Reduced capacity](pics/Edible_fungi_in_basket_2012_G1.jpg){width=80%}
-
-See more in [@caruana1998multitask]
-
-----
-
-![Eavesdropping](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Henri_Adolphe_Laissement_Kardin%C3%A4le_im_Vorzimmer_1895.jpg/1920px-Henri_Adolphe_Laissement_Kardin%C3%A4le_im_Vorzimmer_1895.jpg){width=70%}
-
-----
-
-
-![scikit - denoising filters](http://www.scipy-lectures.org/_images/plot_filter_coins_1.png)
-
-Noise in extra outputs might be less harmful than in extra input [@caruana1998multitask] (also: **weighting** of loss)
-
-----
 
 # Successful MTL
 
