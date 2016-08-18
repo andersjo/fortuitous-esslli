@@ -35,9 +35,19 @@ output: $\mathbf{y}$ (output with $d_{out}$ classes)
 
 Formalization and corresponding visualization:
 
-$$NN_{MLP1}(\mathbf{x})=g(\mathbf{xW^1+b^1})\mathbf{W^2}+\mathbf{b^2}$$
+$$NN_{MLP1}(\mathbf{x})=\sigma(g(\mathbf{xW^1+b^1})\mathbf{W^2}+\mathbf{b^2})$$
 
 ![](pics/nn.png)
+
+## Computational graph:
+
+- nodes are operations
+- gray boxes are parameters
+
+$$NN_{MLP1}(\mathbf{x})=g(\mathbf{xW^1+b^1})\mathbf{W^2}+\mathbf{b^2}$$ 
+
+ ![](pics/compgraph1.png){ width=15%}
+
 
 
 ## Where do the weights come frome?
@@ -59,41 +69,27 @@ We need:
 
 ## Skeleton of gradient descent:
     
-**Input**: training set, loss function $L$
+**Input**: training set, loss function $l$
 
 Repeat for number of iterations (**epochs**): 
  
-* compute loss on data: $L(X,Y)$
-* compute gradients: $\mathbf{g} = L(X,Y)$ with respect to $w$
-* move parameters in direction of the negative gradient: $w \pm -\eta \mathbf{g}$
+* compute loss on data: $l(X,Y)$
+* compute gradients: $\mathbf{g} = \frac{\partial}{\partial \theta} l(X,Y)$ with respect to $\theta$
+* move parameters in direction of the negative gradient: $\theta \pm -\eta \mathbf{g}$
 
-## Computational Graph
+## Backprop
 
-Way of computing the **gradients**: **backprop**
 
-A powerful way to compute these gradients is to see the network as a  **computational graph**.
+* backward pass: gradient computations (through chain rule) 
 
-It helps us to understand the flow in the model:
 
-* forward pass: compute activations
-* backward pass: gradient computations (chain rule) 
+## Summary: Equivalent formulizations 
 
-----
+![Complete Neural Network](pics/compgraphcomplete.png){ width=50%}
 
-In a computational graph:
+## Loss
 
-- nodes are operations
-- gray boxes are parameters
-
-$$NN_{MLP1}(\mathbf{x})=g(\mathbf{xW^1+b^1})\mathbf{W^2}+\mathbf{b^2}$$
-
-![Inspired by @goldberg-primer](pics/compgraph1.png){ width=15%}
-
------
-
-## Equivalent formulizations 
-
-![Complete Neural Network](pics/compgraphcomplete.png){ width=70%}
+![](pics/yoav.png){ width=80%}
 
 
 ----
@@ -107,7 +103,7 @@ However, what is the input **$x$**?
 
 ## Feature representations
 
-Probably the biggest jump when moving from traditional linear models with sparse inputs to deep neural networks is to stop representing each feature as a unique dimension, but instead represent them as **dense vectors** [@goldberg-primer].
+> Probably the biggest jump when moving from traditional linear models with sparse inputs to deep neural networks is to stop representing each feature as a unique dimension, but instead represent them as **dense vectors** [@goldberg-primer].
 
 . . . 
 
@@ -120,7 +116,7 @@ $$\mathbf{x}_{dog} = [0,0,0,0,1,0,0] $$
 
 . . .
 
-$$\mathbf{x}_{cat} \wedge \mathbf{x}_{dog} = 0$$
+$$sim(\mathbf{x}_{cat},\mathbf{x}_{dog}) = 0$$
 
 ## Word embeddings
 
@@ -130,7 +126,7 @@ $$\mathbf{x}_{cat} \wedge \mathbf{x}_{dog} = 0$$
 
 ![](pics/flødebolle.png){width=100%}
 
-## Word embeddings
+## Approaches
 
 > 1. Traditional approach: LSA (SVD) on word-coocurrence matrix
 > 
@@ -163,27 +159,22 @@ since SVD computation cost scales quadratically with size of co-occurence matrix
 
 ----
 
-$o$ is the outside word (context), $c$ is the current center word; 
-
-Maximize the probability of a word in the context ($o$) given the current word $c$:
-
-$$p(o|c) = \frac{exp(u_o^T v_c)}{\sum_{w=1}^W exp(u_w^T v_c)}$$
-
-----
-
 ![@mikolov2013](pics/skipgram.png){width=50%}
 
 . . . 
 
 NB. denominator $\sum$ over all words! $\rightarrow$ *negative sampling* or *hierarchical softmax*
 
+
 ----
 
-So, what is the input **$x$**?
+Note: embeddings are not specific to **words**
+
+
 
 ## Sparse vs dense 
 
-![@goldberg-primer](pics/sparse-vs-dense.png){width=79%}
+![@goldberg-primer](pics/sparse-vs-dense.png){width=77%}
 
 ## Dense feature spaces
 
@@ -209,6 +200,25 @@ $$\mathbf{x} = c(f_1, f_2, f3) = [mean(v(f_1),v(f_2),v(f_3))] $$
 
 ![$$x$$ sparse, dense or both](pics/compgraphcomplete.png){ width=70%}
 
+
+# Multi-task learning
+
+## Key idea
+
+The idea of **multi-task learning** [@caruana1998multitask, @Collobert:ea:2011] to exploit the training signal of **other tasks**. 
+
+
+## Example: Card game
+
+- you are in beautiful Italy and want to get acquainted with local card games. You hear about 'scala 40', and are eager to learn it
+
+- The input space are cards, and the output space are configuations (hands) of your cards. 
+
+- You know already how to play poker. Rather than starting from scratch (**tabula rasa**), you use your internal knowledge of poker (or generally how to play a card game) to learn how to play 'scala 40'.
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Royal_straight_flush.jpg/1920px-Royal_straight_flush.jpg){width=30%}
+
+
 ## Embeddings as fortuitous data in Transfer learning 
 
 
@@ -227,36 +237,7 @@ Why would using embeddings work?
     * initialize embeddings in dense 
 
 
-# Multi-task learning
 
-## Challenge
-
-How can we hope to use **data from other tasks** where potentially **both the input and output spaces are different**? 
-
-----
-
-### Example 1: Card game
-
-- you are in beautiful Italy and want to get acquainted with local card games. You hear about 'scala 40', and are eager to learn it
-
-- The input space are cards, and the output space are configuations (hands) of your cards. 
-
-- You know already how to play poker. Rather than starting from scratch (**tabula rasa**), you use your internal knowledge of poker (or generally how to play a card game) to learn how to play 'scala 40'.
-
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Royal_straight_flush.jpg/1920px-Royal_straight_flush.jpg){width=30%}
-
-----
-
-### Example 2: riding a motorcycle (day 1)
-
-Here input and output space are different. 
-
-Some skills are unique to driving a motorcycle (need for hand for the clutch, to worry not to tip over when stopping, etc). However, you can use your internal knowledge of how to drive a car in order to learn how to drive a motorcycle. 
-
-
-## Key idea
-
-The idea of **multi-task learning** [@caruana1998multitask, @Collobert:ea:2011] to exploit the training signal of **other tasks**. 
 
 
 ## Multi-task learning
@@ -385,10 +366,6 @@ How affected are neural network-based taggers by...?
 
 ## RNN-based tagger
 
-![@goldberg-primer](pics/rnn-unrolled.png)
-
-----
-
 ![Karpathy](pics/rnn-overview.png)
 
 
@@ -396,15 +373,24 @@ How affected are neural network-based taggers by...?
 
 ![@plank:ea:2016](pics/plank-model1.png)
 
-## Auxiliary loss
-
-![@plank:ea:2016](pics/plank-model2.png)
 
 ## Results 
 
+![](pics/plank-results1.png)
+
+----
+
+![](pics/plank-results2.png)
+
+## Learning curves
+
 ![](pics/plank-res1.png)
 
-(more results in paper)
+(more learning curves in paper)
+
+## Auxiliary loss
+
+![@plank:ea:2016](pics/plank-model2.png)
 
 ----
 
